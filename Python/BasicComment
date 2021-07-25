@@ -1,0 +1,143 @@
+#Python Commants AND Syntex
+
+#Print in Python
+print('Hello, Python!')
+
+#Python Version
+import sys
+print(sys.version)
+
+# Type()  to chech the type of veriable or data
+type(12)
+
+==========Lists in Python===========
+# Create a list
+L = ["Michael Jackson", 10.1, 1982]
+
+# Print the elements on each index
+print('the same element using negative and positive indexing:\n Postive:',L[0], '\n Negative:', L[-3])
+
+# Sample List
+L = ["Michael Jackson", 10.1,1982,"MJ",1]
+
+# List slicing
+L[3:5]
+
+# Use append to add elements to list
+L = [ "Michael Jackson", 10.2]
+L.append(['pop', 10])
+:['Michael Jackson', 10.2, ['pop', 10]]
+
+# Use extend to add elements to list
+L = [ "Michael Jackson", 10.2]
+L.extend(['pop', 10])
+:['Michael Jackson', 10.2, 'pop', 10]
+
+# Change the element based on the index
+A[0] = 'hard rock'
+
+# Delete the element based on the index
+del(A[0])
+
+# Split the string, default is by space
+'hard rock'.split()
+
+# Split the string by comma
+'A,B,C,D'.split(',')
+
+# Clone (clone by value) the list A
+B = A[:]
+
+==========Dictionaries in Python===========
+# Create the dictionary
+Dict = {"key1": 1, "key2": "2", "key3": [3, 3, 3], "key4": (4, 4, 4), ('key5'): 5, (0, 1): 6}
+
+# Access to the value by the key
+Dict["key1"]
+Dict[(0, 1)]
+
+# Get all the keys in dictionary
+Dict.keys()
+
+# Get all the values in dictionary
+Dict.values()
+
+# Append value with key into dictionary
+Dict['Graduation'] = '2007'
+
+# Delete entries by key
+del(Dict['key4'])
+del(Dict['Graduation'])
+
+# Verify the key is in the dictionary
+'key1' in release_year_dict
+
+==============Sets in Python=============
+# Create a set
+set1 = {"pop", "rock", "soul", "hard rock", "rock", "R&B", "rock", "disco"}
+Result will be {'R&B', 'disco', 'hard rock', 'pop', 'rock', 'soul'}
+A = set(["Thriller", "Back in Black", "AC/DC"])
+
+# Convert list to set
+album_list = ["Michael Jackson", "Thriller", 1982, "00:42:19","Pop, Rock, R&B", 46.0, 65, "30-Nov-82", None, 10.0]
+album_set = set(album_list)
+music_genres = set(["pop", "pop", "rock", "folk rock", "hard rock", "soul", "progressive rock", "soft rock", "R&B", "disco"])
+
+
+# Add element to set
+A.add("NSYNC")
+
+# Remove the element from set
+A.remove("NSYNC")
+
+# Verify if the element is in the set
+"AC/DC" in A
+
+----Logical Operation
+# Sample Sets
+album_set1 = set(["Thriller", 'AC/DC', 'Back in Black'])
+album_set2 = set([ "AC/DC", "Back in Black", "The Dark Side of the Moon"])
+
+# Find the intersections
+intersection = album_set1 & album_set2
+intersection:{'AC/DC', 'Back in Black'}
+OR
+intersection=album_set1.intersection(album_set2)
+intersection:{'AC/DC', 'Back in Black'}
+
+# Find the difference in set1 but not set2
+album_set1.difference(album_set2)
+:{'Thriller'}
+
+# Find the union of two sets
+album_set1.union(album_set2)
+:{'AC/DC', 'Back in Black', 'The Dark Side of the Moon', 'Thriller'}
+
+# Check if superset
+set(album_set1).issuperset(album_set2)
+album_set1.issuperset({"Back in Black", "AC/DC"})
+:False/True
+
+# Check if subset
+set(album_set2).issubset(album_set1)
+set({"Back in Black", "AC/DC"}).issubset(album_set1)
+:False/True
+
+# SUM of List And Set
+A = [1, 2, 2, 1]
+B = set([1, 2, 2, 1])
+sum(A) == sum(B)
+
+
+
+
+
+
+
+
+
+
+
+
+
+

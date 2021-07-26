@@ -34,12 +34,6 @@ del(A[0])
 # Split the string, default is by space
 'hard rock'.split()
 
-# Split the string by comma
-'A,B,C,D'.split(',')
-
-# Clone (clone by value) the list A
-B = A[:]
-
 --------------Dictionaries in Python--------------
 # Create the dictionary
 Dict = {"key1": 1, "key2": "2", "key3": [3, 3, 3], "key4": (4, 4, 4), ('key5'): 5, (0, 1): 6}
@@ -84,3 +78,44 @@ A.remove("NSYNC")
 
 # Verify if the element is in the set
 "AC/DC" in A
+
+______________Logical Operation in SET_____________
+# Sample Sets
+album_set1 = set(["Thriller", 'AC/DC', 'Back in Black'])
+album_set2 = set([ "AC/DC", "Back in Black", "The Dark Side of the Moon"])
+
+# Find the intersections
+intersection = album_set1 & album_set2
+intersection:{'AC/DC', 'Back in Black'}
+OR
+intersection=album_set1.intersection(album_set2)
+intersection:{'AC/DC', 'Back in Black'}
+
+# Find the difference in set1 but not set2
+album_set1.difference(album_set2)
+:{'Thriller'}
+
+# Find the union of two sets
+album_set1.union(album_set2)
+:{'AC/DC', 'Back in Black', 'The Dark Side of the Moon', 'Thriller'}
+
+# Check if superset
+set(album_set1).issuperset(album_set2)
+album_set1.issuperset({"Back in Black", "AC/DC"})
+:False/True
+
+# Check if subset
+set(album_set2).issubset(album_set1)
+set({"Back in Black", "AC/DC"}).issubset(album_set1)
+:False/True
+
+# SUM of List And Set
+A = [1, 2, 2, 1]
+B = set([1, 2, 2, 1])
+sum(A) == sum(B)
+
+# Split the string by comma
+'A,B,C,D'.split(',')
+
+# Clone (clone by value) the list A
+B = A[:]

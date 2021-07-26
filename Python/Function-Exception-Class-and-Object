@@ -1,0 +1,145 @@
+Function-Exception-Class-and-Object
+------------Functions in Python--------------
+
+# First function example: Add 1 to a and store as b
+def add(a):
+    """
+    add 1 to a
+    """
+    b = a + 1
+    print(a, "if you add one", b)
+    return(b)
+    
+# Get a help on add function
+help(add)
+
+# Call the function add()
+add(1)
+
+
+# Example for setting param with default value
+def isGoodRating(rating=4): 
+    if(rating < 7):
+        print("this album sucks it's rating is",rating)
+        
+    else:
+        print("this album is good its rating is",rating)
+
+isGoodRating()
+isGoodRating(10)
+
+artist = "Michael Jackson"
+
+#Defining global veriable from the function
+def printer(artist):
+    global internal_var 
+    internal_var= "Whitney Houston"
+    print(artist,"is an artist")
+
+printer("Hello") 
+printer(internal_var)
+
+#-----Collections and Functions-------
+def printAll(*args): # All the arguments are 'packed' into args which can be treated like a tuple
+    print("No of arguments:", len(args)) 
+    for argument in args:
+        print(argument)
+#printAll with 3 arguments
+printAll('Horsefeather','Adonis','Bone')
+#printAll with 4 arguments
+printAll('Sidecar','Long Island','Mudslide','Carriage')
+
+#----------Similarly, The arguments can also be packed into a dictionary as shown:---
+def printDictionary(**args):
+    for key in args:
+        print(key + " : " + args[key])
+
+printDictionary(Country='Canada',Province='Ontario',City='Toronto')
+
+=========EXCEPTION HANDELING=============
+--Example 1:
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+    print("Success a=",a)
+except:
+    print("There was an error")
+    
+--Example 2:
+a = 1
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+    print("Success a=",a)
+except ZeroDivisionError:
+    print("The number you provided cant divide 1 because it is 0")
+except ValueError:
+    print("You did not provide a number")
+except:
+    print("Something went wrong")
+
+--Example 3
+a = 1
+
+try:
+    b = int(input("Please enter a number to divide a"))
+    a = a/b
+except ZeroDivisionError:
+    print("The number you provided cant divide 1 because it is 0")
+except ValueError:
+    print("You did not provide a number")
+except:
+    print("Something went wrong")
+else:
+    print("success a=",a)
+finally:
+    print("Processing Complete")
+
+
+
+==========Classes and Objects in Python===========
+Creating a Class: Now we are going to create a class Circle, but first, we are going to import a library to draw the objects:
+
+# Import the library
+import matplotlib.pyplot as plt
+%matplotlib inline  
+
+# Create a class Circle
+class Circle(object):    
+    # Constructor
+    def __init__(self, radius=3, color='blue'):
+        self.radius = radius
+        self.color = color 
+    
+    # Method
+    def add_radius(self, r):
+        self.radius = self.radius + r
+        return(self.radius)
+    
+    # Method
+    def drawCircle(self):
+        plt.gca().add_patch(plt.Circle((0, 0), radius=self.radius, fc=self.color))
+        plt.axis('scaled')
+        plt.show()  
+
+# Create an object RedCircle
+RedCircle = Circle(10, 'red')
+
+# Find out the methods can be used on the object RedCircle
+dir(RedCircle)
+
+# Print the object attribute radius
+RedCircle.radius
+RedCircle.color
+RedCircle.radius = 1
+RedCircle.radius
+
+# Call the method drawCircle
+RedCircle.drawCircle()
+
+
+
+
+
+

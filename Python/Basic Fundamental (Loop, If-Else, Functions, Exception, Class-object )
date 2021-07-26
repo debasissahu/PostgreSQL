@@ -1,3 +1,23 @@
 ===============Basic Python Program==================
 (Loop, If/Else, Function, Exception, Class and Object)
 
+-------------Conditions in Python (IF/Else)-----------
+#If/Else Statement (Exmp1)
+if age > 18:
+    print("you can enter" )
+elif age == 18:
+    print("go see Pink Floyd")
+else:
+    print("go see Meat Loaf" )
+
+#If/Else Statement (Exmp1)
+album_year = 1980
+if(album_year > 1979) and (album_year < 1990):
+    print ("Album year was in between 1980 and 1989")
+    
+#If/Else Statement (Exmp1)  
+if not (album_year == '1984'):
+    print ("Album year is not 1984")
+    
+    
+----------Loop in Python-------------

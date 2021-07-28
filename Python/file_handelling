@@ -1,0 +1,73 @@
+===========FILE HANDELLING===============
+-------------Reading Files Python--------------
+
+#Download Data
+import urllib.request
+url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-PY0101EN-SkillsNetwork/labs/Module%204/data/example1.txt'
+filename = 'Example1.txt'
+urllib.request.urlretrieve(url, filename)
+
+
+# Read the Example1.txt
+file1 = open("Example1.txt", "r")
+
+# Read the file
+FileContent = file1.read()
+FileContent : 'This is line 1 \nThis is line 2\nThis is line 3'
+
+# Close file after finish
+file1.close()
+
+# Verify if the file is closed
+file1.closed
+
+# Open file using with
+with open(example1, "r") as file1:
+    FileContent = file1.read()
+    print(FileContent)
+
+# Read certain amount of characters
+with open(example1, "r") as file1:
+    print(file1.read(4))
+    print(file1.read(4))
+    print(file1.read(7))
+    print(file1.read(15))
+
+# Read one line
+with open(example1, "r") as file1:
+    print("first line: " + file1.readline())
+
+# Read all lines and save as a list
+with open(example1, "r") as file1:
+    FileasList = file1.readlines()
+--------------------------------
+
+--------Write and Save Files in Python----------
+# Write line to file
+exmp2 = 'Example2.txt'
+with open(exmp2, 'w') as writefile:
+    writefile.write("This is line A")
+    
+# Write lines to file
+with open(exmp2, 'w') as writefile:
+    writefile.write("This is line A\n")
+    writefile.write("This is line B\n")
+
+# Sample list writing to the text file
+Lines = ["This is line A\n", "This is line B\n", "This is line C\n"]
+with open('Example2.txt', 'w') as writefile:
+    for line in Lines:
+        print(line)
+        writefile.write(line)
+        
+# Write (Append) a new line to text file
+with open('Example2.txt', 'a') as testwritefile:
+    testwritefile.write("This is line C\n")
+    testwritefile.write("This is line D\n")
+    testwritefile.write("This is line E\n")
+    
+# Copy file to another
+with open('Example2.txt','r') as readfile:
+    with open('Example3.txt','w') as writefile:
+          for line in readfile:
+                writefile.write(line)

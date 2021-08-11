@@ -1,2 +1,132 @@
-# Webscraping using Beautiful Soupe
+#!pip install bs4
 
+# Webscraping using Beautiful Soupe
+from bs4 import BeautifulSoup
+import requests  
+import pandas as pd
+
+
+html="<!DOCTYPE html><html><head><title>Page Title</title></head><body><h3><b id='boldest'>Lebron James</b></h3><p> Salary: $ 92,000,000 </p><h3> Stephen Curry</h3><p> Salary: $85,000, 000 </p><h3> Kevin Durant </h3><p> Salary: $73,200, 000</p></body></html>"
+soup = BeautifulSoup(html, 'html5lib')
+
+
+tag_object=soup.title
+print(tag_object)
+
+print("---------")
+tag_object=soup.h3
+print(tag_object)
+print(tag_object.b)
+print(tag_object.b.string)
+print(tag_object.parent)
+
+print("---------")
+
+tag_child =tag_object.b
+print(tag_child)
+print(tag_child.parent)
+
+print("---------")
+print(tag_object)
+print(tag_object.next_sibling)
+print(tag_object.next_sibling.next_sibling)
+print(tag_object.next_sibling.next_sibling.next_sibling)
+print(tag_object.next_sibling.next_sibling.next_sibling.next_sibling)
+print(tag_object.next_sibling.next_sibling.next_sibling.next_sibling.next_sibling)
+print(tag_object.next_sibling.next_sibling.next_sibling.next_sibling.next_sibling.next_sibling)
+
+print("---------")
+sbling=tag_object;
+while(sbling!=None):
+    print(sbling.string)
+    sbling=sbling.next_sibling
+
+
+print("---------")
+print(tag_child['id'])
+print(tag_child.attrs)
+print(tag_child.attrs['id'])
+print(tag_child.get('id'))
+print(tag_child.get('idsss'))
+
+
+table="<table><tr><td id='flight'>Flight No</td><td>Launch site</td> <td>Payload mass</td></tr><tr> <td>1</td><td><a href='https://en.wikipedia.org/wiki/Florida'>Florida<a></td><td>300 kg</td></tr><tr><td>2</td><td><a href='https://en.wikipedia.org/wiki/Texas'>Texas</a></td><td>94 kg</td></tr><tr><td>3</td><td><a href='https://en.wikipedia.org/wiki/Florida'>Florida<a> </td><td>80 kg</td></tr></table>"
+table_bs = BeautifulSoup(table, 'html5lib')
+print("---------")
+table_rows=table_bs.find_all('tr')
+print(table_rows)
+print("---------")
+print(table_rows[0])
+
+print("---------")
+for i,row in enumerate(table_rows):
+    print("row",i,"is",row)
+
+print("---------")
+for i,row in enumerate(table_rows):
+    print("row",i)
+    cells=row.find_all('td')
+    for j,cell in enumerate(cells):
+        print('colunm',j,"cell",cell)
+        
+print("---------")      
+list_input=table_bs .find_all(name=["tr", "td"])
+print(list_input)
+
+print("---------") 
+print(table_bs.find_all(id="flight"))
+print(table_bs.find_all(href="https://en.wikipedia.org/wiki/Florida"))
+print(table_bs.find_all(href=True))
+print(soup.find_all(id="boldest"))
+
+
+#####----Downloading And Scraping The Contents Of A Web Page
+
+data  = requests.get("http://www.ibm.com").text 
+soup = BeautifulSoup(data,"html5lib")
+
+for link in soup.find_all('a',href=True):  # in html anchor/link is represented by the tag <a>
+    print(link.get('href'))
+
+
+for link in soup.find_all('img'):# in html image is represented by the tag <img>
+    print(link)
+    print(link.get('src'))
+
+
+
+#####-------Scrape data from HTML tables into a DataFrame using BeautifulSoup and Pandas¶
+
+url = "https://en.wikipedia.org/wiki/World_population"
+data  = requests.get(url).text
+soup = BeautifulSoup(data,"html5lib")
+
+
+#find all html tables in the web page
+tables = soup.find_all('table') # in html table is represented by the tag <table>
+
+len(tables)
+
+for index,table in enumerate(tables):
+    if ("10 most densely populated countries" in str(table)):
+        table_index = index
+print(table_index)
+
+print(tables[table_index].prettify())
+
+print("===----------------===")
+population_data = pd.DataFrame(columns=["Rank", "Country", "Population", "Area", "Density"])
+
+for row in tables[table_index].tbody.find_all("tr"):
+    col = row.find_all("td")
+    if (col != []):
+        rank = col[0].text
+        country = col[1].text
+        population = col[2].text.strip()
+        area = col[3].text.strip()
+        density = col[4].text.strip()
+        population_data = population_data.append({"Rank":rank, "Country":country, "Population":population, "Area":area, "Density":density}, ignore_index=True)
+
+print(population_data)
+
+df=pd.read_html(str(tables[5]), flavor='bs4')
